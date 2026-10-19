@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-en="Valuation engine — Napell Bank" data-zh="估值引擎 — Napell Bank">Valuation engine — Napell Bank</title>
+<meta name="description" content="Four factors, one loan. Spot anchor, quality multiplier, temperature-adjusted decay and a volatility haircut, recomputed every day.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d9bf0'/%3E%3Cellipse cx='16' cy='16' rx='7' ry='9' fill='%23000'/%3E%3Cpath d='M16 8c-2 4-2 12 0 16' stroke='%231d9bf0' stroke-width='1.6' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+</head>
+<body data-page="valuation">
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="mark">NB</span><span>Napell<span class="b2">Bank</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html" data-nav="index" data-en="Overview" data-zh="概览">Overview</a>
+      <a href="valuation.html" data-nav="valuation" data-en="Valuation engine" data-zh="估值引擎">Valuation engine</a>
+      <a href="products.html" data-nav="products" data-en="Products" data-zh="产品">Products</a>
+      <a href="compliance.html" data-nav="compliance" data-en="Compliance" data-zh="合规底座">Compliance</a>
+      <a href="assetization.html" data-nav="assetization" data-en="Assetization" data-zh="资产化">Assetization</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang">
+        <button data-lang-btn="en" class="on">EN</button>
+        <button data-lang-btn="zh">中文</button>
+      </div>
+      <a class="btn sm" href="products.html" data-en="Products" data-zh="产品">Products</a>
+      <button class="burger" aria-label="Menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" style="padding:80px 0 48px">
+  <div class="wrap">
+    <div class="eyebrow" data-en="Layer 2 · Valuation" data-zh="第二层 · 估值">Layer 2 · Valuation</div>
+    <h1 data-en="Four factors.<br>One loan." data-zh="四个因子。<br>一个可放款金额。">Four factors.<br>One loan.</h1>
+    <p class="lead" data-en="A price is an opinion. A loan is a number derived from a price after deducting every way the collateral can lose value. This page computes the second one." data-zh="价格是观点。放款额是扣掉抵押品所有可能贬值路径之后、从价格推导出来的数字。这一页算的是后者。">A price is an opinion. A loan is a number derived from a price after deducting every way the collateral can lose value. This page computes the second one.</p>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:8px">
+  <div class="wrap">
+    <div class="formula">
+      <div><span class="cm">// adjusted collateral value at expiry</span></div>
+      <div>V<span class="op">=</span>P <span class="op">×</span> Q <span class="op">×</span> D(age <span class="op">+</span> term, temp) <span class="op">×</span> W</div>
+      <div style="height:8px"></div>
+      <div><span class="cm">// haircut, derived from volatility not negotiation</span></div>
+      <div><span class="k">LTV</span> <span class="op">=</span> 1 <span class="op">−</span> VaR<sub>95</sub> <span class="op">−</span> reinspection <span class="op">−</span> disposal <span class="op">−</span> buffer</div>
+      <div style="height:8px"></div>
+      <div><span class="cm">// the only output that matters</span></div>
+      <div>Loan <span class="op">=</span> V <span class="op">×</span> <span class="k">LTV</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tight" style="padding-top:24px">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:20px">
+      <div class="eyebrow" data-en="Live calculator" data-zh="实时计算器">Live calculator</div>
+      <h2 data-en="Model a lot" data-zh="算一个批次">Model a lot</h2>
+    </div>
+
+    <div class="calc">
+      <div class="panel">
+        <div class="panel-head">
+          <h3 data-en="Inputs" data-zh="输入">Inputs</h3>
+          <span class="hint" data-en="Pre-filled: 60 t, 86 pts" data-zh="默认：60 吨、86 分">Pre-filled: 60 t, 86 pts</span>
+        </div>
+        <div class="fields">
+          <div class="field">
+            <label data-en="Volume" data-zh="数量">Volume</label>
+            <input id="i-tonnes" type="number" value="60" min="1" max="2000" step="1">
+            <span class="unit" data-en="tonnes" data-zh="吨">tonnes</span>
+          </div>
+          <div class="field">
+            <label data-en="C-price" data-zh="C 价">C-price</label>
+            <input id="i-cPrice" type="number" value="320" min="50" max="900" step="1">
+            <span class="unit" data-en="US cents / lb" data-zh="美分 / 磅">US cents / lb</span>
+          </div>
+          <div class="field">
+            <label data-en="Differential" data-zh="产地升水">Differential</label>
+            <input id="i-diff" type="number" value="25" min="-80" max="300" step="1">
+            <span class="unit" data-en="US cents / lb" data-zh="美分 / 磅">US cents / lb</span>
+          </div>
+          <div class="field">
+            <label data-en="FX" data-zh="汇率">FX</label>
+            <input id="i-fx" type="number" value="7.10" min="5" max="10" step="0.01">
+            <span class="unit">CNY / USD</span>
+          </div>
+          <div class="field">
+            <label data-en="SCA cupping score" data-zh="SCA 杯测分">SCA cupping score</label>
+            <input id="i-sca" type="number" value="86" min="70" max="95" step="0.5">
+            <span class="unit" data-en="points" data-zh="分">points</span>
+          </div>
+          <div class="field">
+            <label data-en="Moisture" data-zh="含水率">Moisture</label>
+            <input id="i-moisture" type="number" value="10.8" min="8" max="16" step="0.1">
+            <span class="unit" data-en="% — ideal 10.5–11.5" data-zh="% — 理想区间 10.5–11.5">% — ideal 10.5–11.5</span>
+          </div>
+          <div class="field">
+            <label data-en="Defect class" data-zh="缺陷等级">Defect class</label>
+            <select id="i-defects">
+              <option value="0" data-en="0 — clean" data-zh="0 — 无缺陷">0 — clean</option>
+              <option value="1" selected data-en="1 — light" data-zh="1 — 轻微">1 — light</option>
+              <option value="2" data-en="2 — secondary" data-zh="2 — 二级">2 — secondary</option>
+            </select>
+            <span class="unit" data-en="300 g sample" data-zh="300 克样品">300 g sample</span>
+          </div>
+          <div class="field">
+            <label data-en="Vault temperature" data-zh="仓温">Vault temperature</label>
+            <input id="i-temp" type="number" value="18" min="10" max="35" step="1">
+            <span class="unit" data-en="°C — Q10 = 2" data-zh="°C — Q10 = 2">°C — Q10 = 2</span>
+          </div>
+          <div class="field">
+            <label data-en="Age at pledge" data-zh="入库月龄">Age at pledge</label>
+            <input id="i-age" type="number" value="4" min="0" max="30" step="1">
+            <span class="unit" data-en="months" data-zh="月">months</span>
+          </div>
+          <div class="field">
+            <label data-en="Loan term" data-zh="质押期限">Loan term</label>
+            <input id="i-term" type="number" value="6" min="1" max="24" step="1">
+            <span class="unit" data-en="months" data-zh="月">months</span>
+          </div>
+          <div class="field full">
+            <label data-en="Annualised volatility" data-zh="年化波动率">Annualised volatility <span id="v-sigma" class="mono">35%</span></label>
+            <input id="i-sigma" type="range" value="35" min="15" max="60" step="1">
+            <span class="unit" data-en="Arabica has run 30–40% for most of the last decade" data-zh="阿拉比卡过去十年多数时间在 30–40% 区间">Arabica has run 30–40% for most of the last decade</span>
+          </div>
+          <div class="field">
+            <label data-en="Disposal cost" data-zh="处置成本">Disposal cost</label>
+            <input id="i-disposal" type="number" value="8" min="3" max="25" step="0.5">
+            <span class="unit" data-en="% — own channel = 8" data-zh="% — 自有渠道 = 8">% — own channel = 8</span>
+          </div>
+          <div class="field">
+            <label data-en="Re-inspection discount" data-zh="品质复核折价">Re-inspection discount</label>
+            <input id="i-reinspect" type="number" value="6" min="0" max="20" step="0.5">
+            <span class="unit" data-en="% — dispute repricing" data-zh="% — 争议重议价">% — dispute repricing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3 data-en="Result" data-zh="结果">Result</h3>
+          <span class="hint" id="hint-ltv">LTV 52.2%</span>
+        </div>
+        <div class="res-grid">
+          <div class="metric">
+            <div class="k" data-en="Adjusted value at expiry" data-zh="到期日调整后估值">Adjusted value at expiry</div>
+            <div class="v" id="o-adj">¥325.9万</div>
+            <div class="s" id="o-adj-sub">¥3,259,000</div>
+          </div>
+          <div class="metric">
+            <div class="k" data-en="Pledge ratio (LTV)" data-zh="质押率">Pledge ratio (LTV)</div>
+            <div class="v big" id="o-ltv">52.2%</div>
+            <div class="s" id="o-ltv-sub">VaR 28.8%</div>
+          </div>
+          <div class="metric ok">
+            <div class="k" data-en="Loan amount" data-zh="放款额">Loan amount</div>
+            <div class="v" id="o-loan">¥170.0万</div>
+            <div class="s" id="o-loan-sub">¥1,700,000</div>
+          </div>
+          <div class="metric">
+            <div class="k" data-en="Margin call at" data-zh="追保触发线">Margin call at</div>
+            <div class="v" id="o-call">¥283.3万</div>
+            <div class="s" data-en="collateral value, 60% maintain" data-zh="抵押品价值，维持 60%">collateral value, 60% maintain</div>
+          </div>
+        </div>
+
+        <div class="gauge">
+          <div class="gauge-top">
+            <span data-en="Loan to value" data-zh="质押率">Loan to value</span>
+            <span id="o-gauge-label">52.2%</span>
+          </div>
+          <div class="gauge-bar"><div class="gauge-fill" id="o-gauge-fill" style="width:52%"></div></div>
+          <div class="gauge-marks">
+            <span style="left:30%">30%</span>
+            <span style="left:60%">60%</span>
+            <span style="left:72%">72%</span>
+          </div>
+        </div>
+
+        <div class="status ok" id="o-status" data-en="Within policy. No collateral action required." data-zh="符合政策，无需抵押品动作。">Within policy. No collateral action required.</div>
+
+        <div class="tw" style="margin-top:18px;background:transparent;border:0">
+          <table style="min-width:0">
+            <tbody>
+              <tr><td data-en="Quality multiplier Q" data-zh="品质因子 Q">Quality multiplier Q</td><td class="num" id="o-q">1.07</td></tr>
+              <tr><td data-en="Decay factor D at expiry" data-zh="到期日衰减因子 D">Decay factor D at expiry</td><td class="num" id="o-d">0.94</td></tr>
+              <tr><td data-en="Effective aged months (temp-adjusted)" data-zh="温度折算月龄">Effective aged months (temp-adjusted)</td><td class="num" id="o-eff">10.4</td></tr>
+              <tr><td data-en="VaR 95% over term" data-zh="期限内 VaR 95%">VaR 95% over term</td><td class="num" id="o-var">28.8%</td></tr>
+              <tr><td data-en="Liquidation value" data-zh="平仓值">Liquidation value</td><td class="num down" id="o-liq">¥236.1万</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="Factor 1 — P" data-zh="因子 1 — P">Factor 1 — P</div>
+      <h2 data-en="The spot anchor is where valuations die quietly" data-zh="现货锚是估值悄悄失效的地方">The spot anchor is where valuations die quietly</h2>
+    </div>
+    <div class="g3">
+      <div class="card">
+        <span class="idx">P.1</span>
+        <h4 data-en="Commercial grade" data-zh="商业级">Commercial grade</h4>
+        <p data-en="ICE Arabica C-price plus origin differential plus FX. Public, auditable, no argument." data-zh="ICE 阿拉比卡 C 价 + 产地升水 + 汇率。公开、可审计、无需争论。">ICE Arabica C-price plus origin differential plus FX. Public, auditable, no argument.</p>
+      </div>
+      <div class="card">
+        <span class="idx">P.2</span>
+        <h4 data-en="Specialty grade" data-zh="精品级">Specialty grade</h4>
+        <p data-en="C-price under-prices a 90-point lot by a wide margin. Specialty needs a transaction index we build from our own fills, partner roaster purchases and auction results." data-zh="C 价会大幅低估 90 分批次。精品豆必须自建成交价指数：自有成交、合作烘焙厂采购价、拍卖结果。">C-price under-prices a 90-point lot by a wide margin. Specialty needs a transaction index we build from our own fills, partner roaster purchases and auction results.</p>
+      </div>
+      <div class="card">
+        <span class="idx">P.3</span>
+        <h4 data-en="Three traps" data-zh="三个陷阱">Three traps</h4>
+        <p data-en="Futures up while the differential collapses; USD-denominated collateral against a CNY loan; and closing prices that gap through a margin call overnight." data-zh="期货上涨而升水同时崩塌；美元计价抵押品对人民币放款；以及隔夜跳空直接击穿追保线的收盘价。">Futures up while the differential collapses; USD-denominated collateral against a CNY loan; and closing prices that gap through a margin call overnight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="Factor 2 — Q" data-zh="因子 2 — Q">Factor 2 — Q</div>
+      <h2 data-en="Quality must be asymmetric" data-zh="品质因子必须不对称">Quality must be asymmetric</h2>
+      <p class="lead" data-en="Good quality caps at 1.15. Poor quality can fall to 0.65. An up-only curve invites sample beautification; the downside is what a lender actually holds." data-zh="品质好最多上浮到 1.15，品质差可以下调到 0.65。只升不降的曲线会诱使送检样品作假；而放款方真正握在手里的，是下行那一段。">Good quality caps at 1.15. Poor quality can fall to 0.65. An up-only curve invites sample beautification; the downside is what a lender actually holds.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Component" data-zh="分项">Component</th>
+            <th data-en="Band" data-zh="区间">Band</th>
+            <th data-en="Adjustment" data-zh="调整">Adjustment</th>
+            <th data-en="Why" data-zh="原因">Why</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>SCA 88+</td><td class="mono">≥ 88.0</td><td class="num up">+0.10</td><td data-en="Competition grade, deep buyer pool" data-zh="竞赛级，买方池深">Competition grade, deep buyer pool</td></tr>
+          <tr><td>SCA 86–87.9</td><td class="mono">86.0–87.9</td><td class="num up">+0.07</td><td data-en="Specialty, standard premium" data-zh="精品，标准溢价">Specialty, standard premium</td></tr>
+          <tr><td>SCA 84–85.9</td><td class="mono">84.0–85.9</td><td class="num up">+0.03</td><td data-en="High commercial" data-zh="高商业级">High commercial</td></tr>
+          <tr><td>SCA 82–83.9</td><td class="mono">82.0–83.9</td><td class="num">0.00</td><td data-en="Baseline" data-zh="基准">Baseline</td></tr>
+          <tr><td>SCA 80–81.9</td><td class="mono">80.0–81.9</td><td class="num down">−0.08</td><td data-en="Thin secondary market" data-zh="二级市场稀薄">Thin secondary market</td></tr>
+          <tr><td>SCA below 80</td><td class="mono">&lt; 80.0</td><td class="num down">−0.25</td><td data-en="Moves to the commercial pool, different index" data-zh="转入商业豆池，换用另一套指数">Moves to the commercial pool, different index</td></tr>
+          <tr><td data-en="Moisture" data-zh="含水率">Moisture</td><td class="mono">10.5–11.5%</td><td class="num">0.00</td><td data-en="Outside the band: −0.04 per 1 pt, capped at −0.10" data-zh="超出区间：每 1 个点 −0.04，最多 −0.10">Outside the band: −0.04 per 1 pt, capped at −0.10</td></tr>
+          <tr><td data-en="Defects (300 g)" data-zh="缺陷（300 克）">Defects (300 g)</td><td class="mono">0 / 1 / 2</td><td class="num">+0.02 / 0 / −0.06</td><td data-en="Hard gate, not a weighted average" data-zh="硬性门槛，不做加权平均">Hard gate, not a weighted average</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:20px">
+      <b data-en="The most common mistake is double counting." data-zh="最常见的错误是双重计算。">The most common mistake is double counting.</b>
+      <span data-en=" If the differential already reflects a specialty premium, Q must not add the cupping score a second time. Q should only capture the verifiable deviation from the lot's own grade — the part a third party can re-test." data-zh="如果产地升水已经包含了精品溢价，Q 就不能再按杯测分加一次。Q 只应反映“相对于该批次自身等级的、可被第三方复验的品质偏离”。"> If the differential already reflects a specialty premium, Q must not add the cupping score a second time. Q should only capture the verifiable deviation from the lot's own grade — the part a third party can re-test.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="Factor 3 — D(t)" data-zh="因子 3 — D(t)">Factor 3 — D(t)</div>
+      <h2 data-en="Temperature is a financial parameter" data-zh="温度是一个财务参数">Temperature is a financial parameter</h2>
+      <p class="lead" data-en="Decay is modelled as conservative step bands, adjusted with Q10 = 2: every 10°C doubles the effective ageing rate. Cooling a vault from 28°C to 18°C is not an operating expense — it is a balance-sheet improvement." data-zh="衰减按保守的分段阶梯建模，并用 Q10 = 2 修正：每升高 10°C，有效老化速率翻倍。把仓温从 28°C 降到 18°C 不是运营开支，而是资产负债表改善。">Decay is modelled as conservative step bands, adjusted with Q10 = 2: every 10°C doubles the effective ageing rate. Cooling a vault from 28°C to 18°C is not an operating expense — it is a balance-sheet improvement.</p>
+    </div>
+    <div class="g2">
+      <div class="card pad-lg">
+        <h4 style="margin-bottom:14px" data-en="Decay factor D by vault temperature" data-zh="不同仓温下的衰减因子 D">Decay factor D by vault temperature</h4>
+        <div id="chart-decay" class="chart-sm"></div>
+      </div>
+      <div class="card pad-lg">
+        <h4 style="margin-bottom:14px" data-en="Pledge ratio vs volatility, by liquidation horizon" data-zh="质押率与波动率（按不同处置期）">Pledge ratio vs volatility, by liquidation horizon</h4>
+        <div id="chart-ltv" class="chart-sm"></div>
+      </div>
+    </div>
+    <div class="tw" style="margin-top:20px">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Months in storage" data-zh="存放月数">Months in storage</th>
+            <th class="num" data-en="D at 18°C" data-zh="18°C 时 D">D at 18°C</th>
+            <th class="num" data-en="D at 24°C" data-zh="24°C 时 D">D at 24°C</th>
+            <th class="num" data-en="D at 30°C" data-zh="30°C 时 D">D at 30°C</th>
+            <th data-en="Trading status" data-zh="交易状态">Trading status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>0–6</td><td class="num">1.00</td><td class="num">0.94</td><td class="num">0.94</td><td data-en="Flavour window intact" data-zh="风味窗口完整">Flavour window intact</td></tr>
+          <tr><td>6–12</td><td class="num">0.94</td><td class="num">0.94</td><td class="num">0.88</td><td data-en="Normal trade, slight aroma loss" data-zh="正常交易，轻微失香">Normal trade, slight aroma loss</td></tr>
+          <tr><td>12–18</td><td class="num">0.88</td><td class="num">0.80</td><td class="num">0.80</td><td data-en="Discount to clear" data-zh="需折价出货">Discount to clear</td></tr>
+          <tr><td>18–24</td><td class="num">0.80</td><td class="num">0.68</td><td class="num">0.68</td><td data-en="Blend and dark roast only" data-zh="仅适合拼配与深烘">Blend and dark roast only</td></tr>
+          <tr><td>24+</td><td class="num down">0.68</td><td class="num down">0.68</td><td class="num down">0.68</td><td data-en="No new pledges accepted" data-zh="不再接受新质押">No new pledges accepted</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mut" style="margin-top:16px;max-width:860px" data-en="On a ¥3.24m lot, the 18°C versus 28°C gap at the twelve-month mark is roughly ¥480,000 of pledgeable value — a number that pays for a lot of refrigeration." data-zh="对一个 324 万元的批次，在第十二个月时，18°C 与 28°C 之间的差距约为 48 万元的可质押价值——这个数字足以支付相当多制冷费用。">On a ¥3.24m lot, the 18°C versus 28°C gap at the twelve-month mark is roughly ¥480,000 of pledgeable value — a number that pays for a lot of refrigeration.</p>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="Factor 4 — LTV" data-zh="因子 4 — LTV">Factor 4 — LTV</div>
+      <h2 data-en="Nobody negotiates a pledge ratio" data-zh="质押率不是谈出来的">Nobody negotiates a pledge ratio</h2>
+      <p class="lead" data-en="It is a residual: whatever is left after the worst plausible price move, the re-inspection discount, the cost of disposing of the collateral and a buffer for model error." data-zh="它是一个余数：扣掉最坏情况下的价格变动、品质复核折价、处置成本，以及为模型误差预留的缓冲之后，剩下的那部分。">It is a residual: whatever is left after the worst plausible price move, the re-inspection discount, the cost of disposing of the collateral and a buffer for model error.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Component" data-zh="构成">Component</th>
+            <th class="num" data-en="Base case" data-zh="基准情形">Base case</th>
+            <th data-en="Notes" data-zh="说明">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-en="VaR 95%, 3-month liquidation horizon" data-zh="VaR 95%，3 个月处置期">VaR 95%, 3-month liquidation horizon</td><td class="num down">28.8%</td><td data-en="1.645 × σ 35% × √0.25 — the haircut covers time-to-liquidate, not the loan term" data-zh="1.645 × σ 35% × √0.25 —— 折价覆盖的是处置所需时间，不是贷款期限">1.645 × σ 35% × √0.25 — the haircut covers time-to-liquidate, not the loan term</td></tr>
+          <tr><td data-en="Re-inspection discount" data-zh="品质复核折价">Re-inspection discount</td><td class="num down">6.0%</td><td data-en="If quality is re-tested lower during a dispute" data-zh="争议中品质被复检出更低值时">If quality is re-tested lower during a dispute</td></tr>
+          <tr><td data-en="Disposal cost" data-zh="处置成本">Disposal cost</td><td class="num down">8.0%</td><td data-en="Own roasting and retail channel; open market is 15%" data-zh="自有烘焙与零售渠道；公开市场为 15%">Own roasting and retail channel; open market is 15%</td></tr>
+          <tr><td data-en="Model buffer" data-zh="模型缓冲">Model buffer</td><td class="num down">5.0%</td><td data-en="Parameter error and operational slippage" data-zh="参数误差与操作滑移">Parameter error and operational slippage</td></tr>
+          <tr><td><b data-en="Resulting LTV" data-zh="最终质押率">Resulting LTV</b></td><td class="num up"><b>52.2%</b></td><td data-en="Capped at 75%, floored at 30%" data-zh="上限 75%，下限 30%">Capped at 75%, floored at 30%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:20px">
+      <b data-en="Coffee warehouse receipts cannot reach 70–80%." data-zh="咖啡仓单的质押率天生到不了 70–80%。">Coffee warehouse receipts cannot reach 70–80%.</b>
+      <span data-en=" Anyone quoting that number is either hiding the volatility or hiding the disposal discount. Steel and copper trade above 75% because their prices are quoted in tenths of a percent per day, not percent per day." data-zh="任何报出这个数字的人，要么在隐瞒波动率，要么在隐瞒处置折价。钢和铜能做到 75% 以上，是因为它们的价格日波动以千分位计，而不是以百分位计。"> Anyone quoting that number is either hiding the volatility or hiding the disposal discount. Steel and copper trade above 75% because their prices are quoted in tenths of a percent per day, not percent per day.</span>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Trigger" data-zh="触发线">Trigger</th>
+            <th class="num" data-en="Maintain LTV" data-zh="维持质押率">Maintain LTV</th>
+            <th data-en="Action" data-zh="动作">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-en="Normal" data-zh="正常">Normal</td><td class="num">≤ 55%</td><td data-en="No action. Daily snapshot filed." data-zh="无动作，每日快照归档。">No action. Daily snapshot filed.</td></tr>
+          <tr><td data-en="Watch" data-zh="观察">Watch</td><td class="num">55–60%</td><td data-en="Notify borrower, offer partial repayment or additional collateral." data-zh="通知借款人，可部分还款或追加抵押品。">Notify borrower, offer partial repayment or additional collateral.</td></tr>
+          <tr><td data-en="Margin call" data-zh="追保">Margin call</td><td class="num">60–72%</td><td data-en="T+1 cash or collateral top-up. No waiver without credit approval." data-zh="T+1 补现金或补货，无授信审批不得豁免。">T+1 cash or collateral top-up. No waiver without credit approval.</td></tr>
+          <tr><td data-en="Liquidation" data-zh="平仓">Liquidation</td><td class="num down">&gt; 72%</td><td data-en="Route to our own roastery at the pre-agreed disposal price." data-zh="按事先约定的处置价转入自有烘焙厂。">Route to our own roastery at the pre-agreed disposal price.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="mark">NB</span><span>Napell<span class="b2">Bank</span></span></a>
+        <p data-en="Coffee collateral infrastructure: custody, valuation, receipt lending and disposal, built for the aeroponic supply chain." data-zh="咖啡抵押品基础设施：存管、估值、仓单融资与处置，为雾化水培供应链而建。">Coffee collateral infrastructure: custody, valuation, receipt lending and disposal, built for the aeroponic supply chain.</p>
+      </div>
+      <div class="foot-col">
+        <h5 data-en="Platform" data-zh="平台">Platform</h5>
+        <a href="valuation.html" data-en="Valuation engine" data-zh="估值引擎">Valuation engine</a>
+        <a href="products.html" data-en="Products" data-zh="产品">Products</a>
+        <a href="compliance.html" data-en="Compliance" data-zh="合规">Compliance</a>
+        <a href="assetization.html" data-en="Assetization" data-zh="资产化">Assetization</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-en="Ecosystem" data-zh="生态">Ecosystem</h5>
+        <a href="https://napell.life" target="_blank" rel="noopener">Napell Life</a>
+        <a href="https://www.jebiwork.com" target="_blank" rel="noopener">JEBI Works</a>
+        <a href="https://coffeeos.space" target="_blank" rel="noopener">JEBI</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-en="Contact" data-zh="联系">Contact</h5>
+        <a href="mailto:erik.wong@napell.bio">erik.wong@napell.bio</a>
+        <a href="https://wa.me/85293188252" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://github.com/erikcywong/napellbank.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 NAPELL BANK</span>
+      <span data-en="Concept demonstration. Not an offer of financial services, credit or investment advice. Parameter values are illustrative and must be calibrated to live market data before any use." data-zh="概念演示站点，不构成金融服务、信贷或投资建议的要约。参数为示意值，任何实际使用前须以实时市场数据校准。">Concept demonstration. Not an offer of financial services, credit or investment advice. Parameter values are illustrative and must be calibrated to live market data before any use.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/nav.js"></script>
+<script src="assets/js/engine.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var ids = ['i-tonnes','i-cPrice','i-diff','i-fx','i-sca','i-moisture','i-defects','i-temp','i-age','i-term','i-sigma','i-disposal','i-reinspect'];
+
+  function readInputs() {
+    return {
+      tonnes: +$('i-tonnes').value || 0,
+      cPrice: +$('i-cPrice').value || 0,
+      differential: +$('i-diff').value || 0,
+      fx: +$('i-fx').value || 7.1,
+      sca: +$('i-sca').value || 80,
+      moisture: +$('i-moisture').value || 11,
+      defects: +$('i-defects').value || 0,
+      temp: +$('i-temp').value || 18,
+      age: +$('i-age').value || 0,
+      term: +$('i-term').value || 6,
+      sigma: (+$('i-sigma').value || 35) / 100,
+      disposal: (+$('i-disposal').value || 8) / 100,
+      reinspect: (+$('i-reinspect').value || 6) / 100,
+      buffer: 0.05
+    };
+  }
+
+  function full(n) { return '¥' + Math.round(n).toLocaleString('en-US'); }
+
+  function render() {
+    var i = readInputs(), r = NB.compute(i);
+
+    $('v-sigma').textContent = $('i-sigma').value + '%';
+
+    $('o-adj').textContent = NB.fmtCny(r.adjValue);
+    $('o-adj-sub').textContent = full(r.adjValue);
+    $('o-ltv').textContent = NB.fmtPct(r.ltv);
+    $('o-ltv-sub').textContent = 'VaR ' + NB.fmtPct(r.varPct);
+    $('hint-ltv').textContent = 'LTV ' + NB.fmtPct(r.ltv);
+    $('o-loan').textContent = NB.fmtCny(r.loan);
+    $('o-loan-sub').textContent = full(r.loan);
+    $('o-call').textContent = NB.fmtCny(r.maintainValue);
+    $('o-q').textContent = r.Q.toFixed(2);
+    $('o-d').textContent = r.D.toFixed(2);
+    $('o-eff').textContent = r.effMonths.toFixed(1);
+    $('o-var').textContent = NB.fmtPct(r.varPct);
+    $('o-liq').textContent = NB.fmtCny(r.liquidateValue);
+
+    var w = Math.min(100, Math.max(0, r.ltv * 100));
+    $('o-gauge-fill').style.width = w + '%';
+    $('o-gauge-label').textContent = NB.fmtPct(r.ltv);
+
+    var loanMetric = $('o-loan').parentElement;
+    loanMetric.className = 'metric ' + (r.status === 'ok' ? 'ok' : r.status === 'warn' ? '' : 'bad');
+
+    var st = $('o-status');
+    var zh = NAPELLBANK_LANG() === 'zh';
+    st.className = 'status ' + r.status;
+    if (r.status === 'ok') {
+      st.textContent = zh ? '符合政策。已生成 T+0 估值快照。' : 'Within policy. T+0 valuation snapshot filed.';
+    } else if (r.status === 'warn') {
+      st.textContent = zh ? '进入观察区间：维持质押率高于 55%，需通知借款人。' : 'Watch band: maintain LTV above 55%. Borrower notification required.';
+    } else {
+      st.textContent = zh ? '触发追保：T+1 内补现金或补货，否则进入处置流程。' : 'Margin call: top up cash or collateral within T+1, otherwise disposal is triggered.';
+    }
+  }
+
+  ids.forEach(function (id) {
+    var el = $(id);
+    if (el) { el.addEventListener('input', render); el.addEventListener('change', render); }
+  });
+
+  /* charts */
+  var cDecay, cLtv;
+
+  function axisStyle() {
+    return {
+      axisLine: { lineStyle: { color: '#2f3336' } },
+      axisTick: { show: false },
+      axisLabel: { color: '#71767b', fontSize: 11, fontFamily: 'ui-monospace, monospace' },
+      splitLine: { lineStyle: { color: 'rgba(47,51,54,.7)' } }
+    };
+  }
+
+  function drawDecay() {
+    var zh = NAPELLBANK_LANG() === 'zh';
+    cDecay = cDecay || echarts.init($('chart-decay'), null, { renderer: 'canvas' });
+    var temps = [
+      { t: 18, c: '#1d9bf0' },
+      { t: 24, c: '#ffd400' },
+      { t: 30, c: '#f4212e' }
+    ];
+    cDecay.setOption({
+      backgroundColor: 'transparent',
+      grid: { left: 38, right: 14, top: 18, bottom: 28 },
+      tooltip: {
+        trigger: 'axis',
+        backgroundColor: '#16181c', borderColor: '#2f3336',
+        textStyle: { color: '#e7e9ea', fontSize: 12 }
+      },
+      xAxis: Object.assign({ type: 'value', min: 0, max: 36, name: zh ? '月' : 'months', nameTextStyle: { color: '#536471', fontSize: 10 }, nameLocation: 'end' }, axisStyle()),
+      yAxis: Object.assign({ type: 'value', min: 0.6, max: 1.02, axisLabel: { color: '#71767b', fontSize: 11, formatter: function (v) { return v.toFixed(2); } } }, axisStyle()),
+      series: temps.map(function (x) {
+        return {
+          name: x.t + '°C',
+          type: 'line',
+          step: 'end',
+          symbol: 'none',
+          data: NB.decaySeries(x.t, 36),
+          lineStyle: { width: 2, color: x.c },
+          itemStyle: { color: x.c }
+        };
+      })
+    }, true);
+  }
+
+  function drawLtv() {
+    var zh = NAPELLBANK_LANG() === 'zh';
+    cLtv = cLtv || echarts.init($('chart-ltv'), null, { renderer: 'canvas' });
+    var horizons = [
+      { h: 1, c: '#00ba7c' },
+      { h: 3, c: '#1d9bf0' },
+      { h: 6, c: '#f4212e' }
+    ];
+    var data = horizons.map(function (x) {
+      var arr = [];
+      for (var s = 20; s <= 50; s += 1) {
+        var sigma = s / 100;
+        var ltv = 1 - NB.var95(sigma, x.h) - 0.06 - 0.08 - 0.05;
+        arr.push([s, Math.max(0.3, Math.min(0.75, ltv)) * 100]);
+      }
+      return {
+        name: x.h + (zh ? ' 个月处置' : 'm liquidation'),
+        type: 'line',
+        symbol: 'none',
+        smooth: false,
+        data: arr,
+        lineStyle: { width: 2, color: x.c },
+        itemStyle: { color: x.c }
+      };
+    });
+    cLtv.setOption({
+      backgroundColor: 'transparent',
+      grid: { left: 44, right: 14, top: 18, bottom: 28 },
+      tooltip: {
+        trigger: 'axis',
+        backgroundColor: '#16181c', borderColor: '#2f3336',
+        textStyle: { color: '#e7e9ea', fontSize: 12 },
+        valueFormatter: function (v) { return v.toFixed(1) + '%'; }
+      },
+      xAxis: Object.assign({ type: 'value', min: 20, max: 50, name: zh ? '年化波动率 %' : 'volatility %', nameTextStyle: { color: '#536471', fontSize: 10 }, nameLocation: 'end' }, axisStyle()),
+      yAxis: Object.assign({ type: 'value', min: 30, max: 78, axisLabel: { color: '#71767b', fontSize: 11, formatter: '{value}%' } }, axisStyle()),
+      series: data
+    }, true);
+  }
+
+  window.addEventListener('langchange', function () { drawDecay(); drawLtv(); });
+  window.addEventListener('resize', function () {
+    if (cDecay) cDecay.resize();
+    if (cLtv) cLtv.resize();
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    render();
+    drawDecay();
+    drawLtv();
+  });
+})();
+</script>
+</body>
+</html>
