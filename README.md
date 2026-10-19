@@ -5,7 +5,7 @@ Coffee bean custody and savings bank. A five-page static site built around one t
 > Green coffee is real collateral with a public price, a measurable grade and a known shelf life.
 > It is almost never financed at its true worth because nobody prices it properly.
 
-Live: **https://www.napellbank.com**
+Live: **https://nexcoffee.cn**
 
 ## Pages
 
@@ -65,7 +65,7 @@ Charts re-render on the `langchange` event.
 
 ## Deploy
 
-GitHub Pages, `main` / root, `www` custom domain via `CNAME`.
+GitHub Pages, `main` / root, custom domain `nexcoffee.cn` via `CNAME`, HTTPS enforced.
 
 ```bash
 git add -A && git commit -m "update" && git push
