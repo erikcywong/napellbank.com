@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-en="Business model — Napell Bank" data-zh="商业模式 — Napell Bank">Business model — Napell Bank</title>
+<meta name="description" content="Seven revenue lines built on trusted warehouse receipts: the warehouse provides credit infrastructure, the bank provides the money, the core enterprise is the buyer of last resort.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d9bf0'/%3E%3Cellipse cx='16' cy='16' rx='7' ry='9' fill='%23000'/%3E%3Cpath d='M16 8c-2 4-2 12 0 16' stroke='%231d9bf0' stroke-width='1.6' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.jrn{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:24px}
+.jrn .step{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 8px;text-align:center}
+.jrn .step .n{font-family:var(--mono);font-size:10px;color:var(--accent)}
+.jrn .step .t{font-size:12.5px;font-weight:600;margin-top:4px}
+.jrn .step .f{font-size:10.5px;color:var(--dim);margin-top:4px;font-family:var(--mono)}
+.card .fee{margin-top:12px;padding-top:10px;border-top:1px dashed var(--border);font-family:var(--mono);font-size:12px;color:var(--accent)}
+.card .fee span{color:var(--dim)}
+.role{border-top:2px solid var(--accent)}
+.role.r2{border-top-color:var(--up)}
+.role.r3{border-top-color:var(--warn)}
+.role.r4{border-top-color:#8866e0}
+.role .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase}
+.role h4{margin-bottom:6px}
+.role p{color:var(--muted);font-size:13.5px;margin:0}
+.chart{width:100%;height:320px}
+.duo{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:900px){.jrn{grid-template-columns:repeat(4,1fr)}.duo{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-page="model">
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="mark">NB</span><span>Napell<span class="b2">Bank</span></span></a>
+    <nav class="nav-links">
+      <a href="index.html" data-nav="index" data-en="Overview" data-zh="概览">Overview</a>
+      <a href="valuation.html" data-nav="valuation" data-en="Valuation engine" data-zh="估值引擎">Valuation engine</a>
+      <a href="products.html" data-nav="products" data-en="Products" data-zh="产品">Products</a>
+      <a href="compliance.html" data-nav="compliance" data-en="Compliance" data-zh="合规底座">Compliance</a>
+      <a href="assetization.html" data-nav="assetization" data-en="Assetization" data-zh="资产化">Assetization</a>
+      <a href="model.html" data-nav="model" data-en="Business model" data-zh="商业模式">Business model</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang">
+        <button data-lang-btn="en" class="on">EN</button>
+        <button data-lang-btn="zh">中文</button>
+      </div>
+      <a class="btn sm" href="valuation.html" data-en="Run the numbers" data-zh="算一算">Run the numbers</a>
+      <button class="burger" aria-label="Menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" style="padding:80px 0 40px">
+  <div class="wrap">
+    <div class="eyebrow" data-en="Business model · v1.0" data-zh="商业模式 · v1.0">Business model · v1.0</div>
+    <h1 data-en="The warehouse builds the credit.<br>The bank moves the money." data-zh="仓储方做信用基础设施，<br>银行做资金，核心企业兜底。">The warehouse builds the credit.<br>The bank moves the money.</h1>
+    <p class="lead" data-en="This is not a plan to become a coffee bank. It is a plan to turn real inventory into credit collateral that banks accept, markets can transfer, and risk systems can control. The warehouse holds title and sets the standard. The bank lends against receipts it can verify. The core enterprise and the industry fund stand ready to buy in a downturn. Three parties, one job: turn dead stock into working cash flow." data-zh="这不是把仓储方做成“咖啡豆银行”的计划，而是把真实库存变成银行认、市场认、可风控的信用资产的计划。仓储方守住货权与标准，银行基于可验证的仓单放贷，核心企业与产业基金在寒冬回购收储——三方一个目标：把“死库存”变成“活现金流”。">This is not a plan to become a coffee bank. It is a plan to turn real inventory into credit collateral that banks accept, markets can transfer, and risk systems can control. The warehouse holds title and sets the standard. The bank lends against receipts it can verify. The core enterprise and the industry fund stand ready to buy in a downturn. Three parties, one job: turn dead stock into working cash flow.</p>
+    <div class="kpis">
+      <div class="kpi"><div class="k" data-en="Revenue lines" data-zh="收入线">Revenue lines</div><div class="v">1 → 7</div><div class="n" data-en="From one storage fee to seven lines" data-zh="从单一仓储费到七条收入线">From one storage fee to seven lines</div></div>
+      <div class="kpi"><div class="k" data-en="High-margin share (Y3)" data-zh="高毛利占比（Y3）">High-margin share (Y3)</div><div class="v">33<small>%</small></div><div class="n" data-en="Origination + transfer + data" data-zh="撮合 + 流转 + 数据">Origination + transfer + data</div></div>
+      <div class="kpi"><div class="k" data-en="Baseline LTV" data-zh="基准质押率">Baseline LTV</div><div class="v">52.2<small>%</small></div><div class="n" data-en="VaR-derived, not negotiated" data-zh="VaR 反推，不谈判">VaR-derived, not negotiated</div></div>
+      <div class="kpi"><div class="k" data-en="Counter-cyclical line" data-zh="逆周期收入">Counter-cyclical line</div><div class="v" data-en="Disposal" data-zh="处置费">Disposal</div><div class="n" data-en="A natural hedge when prices fall" data-zh="价格下跌时的天然对冲">A natural hedge when prices fall</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="01 — Roles" data-zh="01 — 角色分工">01 — Roles</div>
+      <h2 data-en="Who contributes what, and who earns what" data-zh="谁出什么，谁赚什么">Who contributes what, and who earns what</h2>
+      <p class="lead" data-en="The trust structure decides the business structure. Each party contributes something the others cannot replace; remove any one and the loop fails." data-zh="信任结构决定生意结构。四方各出一样别人替代不了的东西，缺任何一方这个闭环都不成立。">The trust structure decides the business structure. Each party contributes something the others cannot replace; remove any one and the loop fails.</p>
+    </div>
+    <div class="g4">
+      <div class="card role">
+        <span class="tag" data-en="We · Warehouse" data-zh="We · 仓储方">We · Warehouse</span>
+        <h4 data-en="Credit infrastructure" data-zh="信用基础设施">Credit infrastructure</h4>
+        <p data-en="Real title control, grading, receipt registration, IoT monitoring, daily mark-to-market, disposal execution. We earn the fee for making a receipt trustworthy." data-zh="真实货权、质检分级、仓单登记、物联网监控、价格盯市、处置执行。赚的是“让仓单可信”的钱。">Real title control, grading, receipt registration, IoT monitoring, daily mark-to-market, disposal execution. We earn the fee for making a receipt trustworthy.</p>
+      </div>
+      <div class="card role r2">
+        <span class="tag" data-en="Bank · Savings bank" data-zh="Bank · 储蓄银行">Bank · Savings bank</span>
+        <h4 data-en="Money and accounts" data-zh="资金与账户">Money and accounts</h4>
+        <p data-en="Lends against verified receipts, runs the closed repayment account, settles supply-chain payments. Earns the spread; never touches the goods, the grading or the storage duty." data-zh="基于真实仓单授信放贷、封闭回款账户、供应链结算。赚利差，不碰货、不碰质检、不担仓储责任。">Lends against verified receipts, runs the closed repayment account, settles supply-chain payments. Earns the spread; never touches the goods, the grading or the storage duty.</p>
+      </div>
+      <div class="card role r3">
+        <span class="tag" data-en="Core · Enterprise / fund" data-zh="Core · 核心企业/基金">Core · Enterprise / fund</span>
+        <h4 data-en="Buyer of last resort" data-zh="最后借款人">Buyer of last resort</h4>
+        <p data-en="Buy-back commitments, disposal priority, counter-cyclical stockpiling. Earns the spread between distress prices and next season's cost — the obligation is also an option." data-zh="回购承诺、处置优先权、逆周期收储。赚的是低价收储的价差与产业话语权，兜底是义务也是期权。">Buy-back commitments, disposal priority, counter-cyclical stockpiling. Earns the spread between distress prices and next season's cost — the obligation is also an option.</p>
+      </div>
+      <div class="card role r4">
+        <span class="tag" data-en="3rd · QC / insurance / survey" data-zh="3rd · 质检/保险/监管">3rd · QC / insurance / survey</span>
+        <h4 data-en="Independent trust" data-zh="第三方信任">Independent trust</h4>
+        <p data-en="Independent QC, goods and price insurance, credit insurance, on-site supervision. Paid in service fees — their independence is itself part of the collateral." data-zh="独立质检、货物保险、价格保险、信用保险、驻场监管。收服务费，其独立性本身是抵押品的一部分。">Independent QC, goods and price insurance, credit insurance, on-site supervision. Paid in service fees — their independence is itself part of the collateral.</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:20px">
+      <b data-en="The division of powers is non-negotiable:" data-zh="关键分工铁律：">The division of powers is non-negotiable:</b>
+      <span data-en=" the warehouse never touches money (no pooled funds, no deposits, no guaranteed returns), the bank never touches the goods (no self-grading, no self-storage), the core enterprise does no daily lending. Mutually exclusive powers are what make mutual endorsement possible." data-zh=" 仓储方不碰资金（不做资金池、不吸储、不保本付息），银行不碰货（不自己质检不自己仓储），核心企业不做日常放贷。三方权限互斥，才能互相背书。"> the warehouse never touches money (no pooled funds, no deposits, no guaranteed returns), the bank never touches the goods (no self-grading, no self-storage), the core enterprise does no daily lending. Mutually exclusive powers are what make mutual endorsement possible.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="02 — Service system" data-zh="02 — 服务体系">02 — Service system</div>
+      <h2 data-en="Eight steps of the client journey, eight billing points" data-zh="八步客户旅程，八个收费点">Eight steps of the client journey, eight billing points</h2>
+      <p class="lead" data-en="Every step is both a service and a fee. From intake to settlement, the client pays for trust at every stage." data-zh="每一环既是服务，也是收费点。客户进来从入库走到结算，每一步都在为“可信”付费。">Every step is both a service and a fee. From intake to settlement, the client pays for trust at every stage.</p>
+    </div>
+    <div class="jrn">
+      <div class="step"><div class="n">S1</div><div class="t" data-en="Intake QC" data-zh="入库认证">Intake QC</div><div class="f" data-en="QC fee" data-zh="质检费">QC fee</div></div>
+      <div class="step"><div class="n">S2</div><div class="t" data-en="Tiered storage" data-zh="分层仓储">Tiered storage</div><div class="f" data-en="Storage fee" data-zh="仓储费">Storage fee</div></div>
+      <div class="step"><div class="n">S3</div><div class="t" data-en="E-receipt" data-zh="电子仓单">E-receipt</div><div class="f" data-en="Registry fee" data-zh="登记费">Registry fee</div></div>
+      <div class="step"><div class="n">S4</div><div class="t" data-en="Financing" data-zh="融资撮合">Financing</div><div class="f" data-en="Origination fee" data-zh="撮合费">Origination fee</div></div>
+      <div class="step"><div class="n">S5</div><div class="t" data-en="Risk custody" data-zh="风控托管">Risk custody</div><div class="f" data-en="Supervision fee" data-zh="监管费">Supervision fee</div></div>
+      <div class="step"><div class="n">S6</div><div class="t" data-en="Transfer" data-zh="流转交割">Transfer</div><div class="f" data-en="Transfer fee" data-zh="流转费">Transfer fee</div></div>
+      <div class="step"><div class="n">S7</div><div class="t" data-en="Disposal" data-zh="处置退出">Disposal</div><div class="f" data-en="Disposal fee" data-zh="处置费">Disposal fee</div></div>
+      <div class="step"><div class="n">S8</div><div class="t" data-en="Settlement" data-zh="结算分账">Settlement</div><div class="f" data-en="Settlement fee" data-zh="结算费">Settlement fee</div></div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <h4 data-en="S1 Intake QC — the production cost of trust" data-zh="S1 入库认证 —— 信任的生产成本">S1 Intake QC — the production cost of trust</h4>
+        <p data-en="Independent inspection (weight, moisture, defects, SCA cupping), lot grading, batch passport, insurance binding, sealed samples kept 18 months. The QC firm has no relationship with the borrower; the sample is the only physical evidence in a dispute." data-zh="独立质检（数量、含水率、缺陷、SCA 杯测）、批次分级、数字护照建档、保险起保、留样封存 18 个月。质检机构与借款人无关联，样本是争议时唯一物证。">Independent inspection (weight, moisture, defects, SCA cupping), lot grading, batch passport, insurance binding, sealed samples kept 18 months. The QC firm has no relationship with the borrower; the sample is the only physical evidence in a dispute.</p>
+        <div class="fee" data-en="QC ¥3,000/lot · passport ¥800/lot/yr · payer: owner" data-zh="质检 ¥3,000/批 · 护照建档 ¥800/批/年 · 付费方：货主">QC ¥3,000/lot · passport ¥800/lot/yr · payer: owner</div>
+      </div>
+      <div class="card">
+        <h4 data-en="S2 Tiered storage — maturity layers, not a funding pool" data-zh="S2 分层仓储 —— 不做资金池的“期限分层”">S2 Tiered storage — maturity layers, not a funding pool</h4>
+        <p data-en="Active vault (traders, fast turns), term vault (roasters stocking up, lower rate), pledged vault (title locked, bank-supervised), delivery vault (settlement-ready). The layers are physical and service layers — never a maturity mismatch on money." data-zh="活期仓（贸易商高频周转）、定期仓（烘焙厂备货、费率低）、质押仓（货权锁定+银行监管）、交割仓（支持仓单交割）。分层是物理与服务分层，不是资金期限错配。">Active vault (traders, fast turns), term vault (roasters stocking up, lower rate), pledged vault (title locked, bank-supervised), delivery vault (settlement-ready). The layers are physical and service layers — never a maturity mismatch on money.</p>
+        <div class="fee" data-en="Active ¥0.20/kg/mo · Term ¥0.14 · Pledged ¥0.24 · 15°C ¥0.32 · payer: owner" data-zh="活期 ¥0.20/kg/月 · 定期 ¥0.14 · 质押仓 ¥0.24 · 15°C ¥0.32 · 付费方：货主">Active ¥0.20/kg/mo · Term ¥0.14 · Pledged ¥0.24 · 15°C ¥0.32 · payer: owner</div>
+      </div>
+      <div class="card">
+        <h4 data-en="S3 E-receipt — the IOU everyone recognises" data-zh="S3 电子仓单 —— 共同认账的“信用凭证”">S3 E-receipt — the IOU everyone recognises</h4>
+        <p data-en="Unique number + central registry entry + batch passport binding + state-machine lock. A bank accepts the receipt because it can be looked up, audited, and released only by instruction — those three facts are what we charge for." data-zh="唯一编号 + 中仓登登记 + 批次护照绑定 + 状态机锁定。仓单能被银行认，靠的是登记可查、审计可验、放货指令闭环——这三样是收费的根基。">Unique number + central registry entry + batch passport binding + state-machine lock. A bank accepts the receipt because it can be looked up, audited, and released only by instruction — those three facts are what we charge for.</p>
+        <div class="fee" data-en="Issuance &amp; registry ¥600/receipt · payer: owner" data-zh="签发登记 ¥600/张 · 付费方：货主">Issuance &amp; registry ¥600/receipt · payer: owner</div>
+      </div>
+      <div class="card">
+        <h4 data-en="S4 Financing — the gateway, never the money" data-zh="S4 融资撮合 —— 场景入口，不碰资金">S4 Financing — the gateway, never the money</h4>
+        <p data-en="Receipt-pledge loans, purchase-order finance, storage-rent instalments, roaster equipment-plus-inventory packages, cross-border LCs with warehouse supervision. We feed the bank QC data and a mark-to-market API; the bank prices and lends." data-zh="仓单质押贷、采购订单融资、仓储租金分期、烘焙厂“设备+库存”组合融资、跨境信用证+仓储监管。平台向银行输出质检数据与盯市接口，银行定价放款。">Receipt-pledge loans, purchase-order finance, storage-rent instalments, roaster equipment-plus-inventory packages, cross-border LCs with warehouse supervision. We feed the bank QC data and a mark-to-market API; the bank prices and lends.</p>
+        <div class="fee" data-en="Origination 2.5%/yr of loan · payer: borrower" data-zh="撮合服务费 2.5%/年 · 占放款额 · 付费方：借款人">Origination 2.5%/yr of loan · payer: borrower</div>
+      </div>
+      <div class="card">
+        <h4 data-en="S5 Risk custody — the second door before the stampede" data-zh="S5 风控托管 —— 合成谬误的“分流门”">S5 Risk custody — the second door before the stampede</h4>
+        <p data-en="Daily mark-to-market, dynamic LTV corridor, concentration caps, hedge onboarding (futures / options / price insurance), margin management. When prices fall, top-ups trigger automatically — before everyone heads for the same exit." data-zh="日频盯市、动态质押率走廊、集中度限额、套保对接（期货/期权/价格保险）、保证金管理。价格跌时自动触发补仓，不等所有人挤向同一扇门。">Daily mark-to-market, dynamic LTV corridor, concentration caps, hedge onboarding (futures / options / price insurance), margin management. When prices fall, top-ups trigger automatically — before everyone heads for the same exit.</p>
+        <div class="fee" data-en="Supervision ¥0.04/kg/mo (inside the pledged rate) · payer: owner / bank" data-zh="监管费 ¥0.04/kg/月（含在质押仓费率内） · 付费方：货主/银行">Supervision ¥0.04/kg/mo (inside the pledged rate) · payer: owner / bank</div>
+      </div>
+      <div class="card">
+        <h4 data-en="S6 Transfer — receipts move, beans stay" data-zh="S6 流转交割 —— 仓单代替豆子搬家">S6 Transfer — receipts move, beans stay</h4>
+        <p data-en="Receipt transfer, agency purchase and sales, basis trading, scheduled delivery. Title moves, coffee does not — the direct translation of “paper money saved metal coins from travelling”, and the source of the platform's network effect." data-zh="仓单转让、代采代销、基差贸易、预约交割。豆子不动、权属动——这是“交子让铁钱不搬家”的直接翻译，也是平台网络效应的来源。">Receipt transfer, agency purchase and sales, basis trading, scheduled delivery. Title moves, coffee does not — the direct translation of "paper money saved metal coins from travelling", and the source of the platform's network effect.</p>
+        <div class="fee" data-en="Transfer 0.8% of value · payer: both sides" data-zh="流转服务费 0.8% · 成交额 · 付费方：买卖双方">Transfer 0.8% of value · payer: both sides</div>
+      </div>
+      <div class="card">
+        <h4 data-en="S7 Disposal — the counter-cyclical line" data-zh="S7 处置退出 —— 逆周期收入">S7 Disposal — the counter-cyclical line</h4>
+        <p data-en="A three-tier ladder: core-enterprise buy-back (92% of market) → platform auction (7 days) → industry-fund stockpiling (index −5%). When prices fall, other lines shrink and disposal revenue rises — a built-in portfolio hedge." data-zh="三级处置梯队：核心企业回购（市价 92%）→ 平台拍卖（7 日）→ 产业基金收储（指数 −5%）。价格下跌时其他收入萎缩、处置收入上升，是天然的组合对冲。">A three-tier ladder: core-enterprise buy-back (92% of market) → platform auction (7 days) → industry-fund stockpiling (index −5%). When prices fall, other lines shrink and disposal revenue rises — a built-in portfolio hedge.</p>
+        <div class="fee" data-en="Disposal 1.5–3% of proceeds · payer: bank / fund" data-zh="处置服务费 1.5–3% · 处置额 · 付费方：银行/基金">Disposal 1.5–3% of proceeds · payer: bank / fund</div>
+      </div>
+      <div class="card">
+        <h4 data-en="S8 Settlement — organising the cash flow" data-zh="S8 结算分账 —— 现金流的组织者">S8 Settlement — organising the cash flow</h4>
+        <p data-en="Escrow accounts for storage fees, margin accounts, closed management of loan repayment, agency payments, farmer payroll, multi-party splitting. All money moves inside bank accounts; the platform issues instructions and splits only." data-zh="仓储费监管账户、保证金账户、质押回款封闭管理、代采代付、咖农工资代发、多方分账。所有资金在银行账户体系内流转，平台只做指令与分账。">Escrow accounts for storage fees, margin accounts, closed management of loan repayment, agency payments, farmer payroll, multi-party splitting. All money moves inside bank accounts; the platform issues instructions and splits only.</p>
+        <div class="fee" data-en="Settlement ¥2–5/txn, 0.05% for large · payer: principal" data-zh="结算服务费 按笔约 ¥2–5/笔，大额按 0.05% · 付费方：委托方">Settlement ¥2–5/txn, 0.05% for large · payer: principal</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="03 — Revenue model" data-zh="03 — 盈利模式">03 — Revenue model</div>
+      <h2 data-en="Seven revenue lines, seven different natures" data-zh="七条收入线的性质与定价">Seven revenue lines, seven different natures</h2>
+      <p class="lead" data-en="Design logic: a stable base (storage), a deep moat (registry and standards), elasticity (origination and transfer), a counter-cyclical hedge (disposal), and a long-duration compounder (data)." data-zh="设计原则：基础盘稳（仓储）、护城河深（登记监管+标准）、弹性大（撮合流转）、逆周期对冲（处置）、长期复利（数据）。">Design logic: a stable base (storage), a deep moat (registry and standards), elasticity (origination and transfer), a counter-cyclical hedge (disposal), and a long-duration compounder (data).</p>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Revenue line" data-zh="收入线">Revenue line</th>
+            <th data-en="Pricing" data-zh="定价">Pricing</th>
+            <th data-en="Payer" data-zh="付费方">Payer</th>
+            <th data-en="Nature" data-zh="收入性质">Nature</th>
+            <th class="num" data-en="Y3 share" data-zh="Y3 占比">Y3 share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><b data-en="Storage" data-zh="仓储费">Storage</b></td><td class="mono">¥0.14–0.32 /kg/mo</td><td data-en="Owner" data-zh="货主">Owner</td><td data-en="Base · cyclical-stable" data-zh="基础盘 · 周期稳定">Base · cyclical-stable</td><td class="num">51%</td></tr>
+          <tr><td><b data-en="QC &amp; certification" data-zh="质检与认证">QC &amp; certification</b></td><td class="mono">¥3,000/lot + ¥800/lot/yr</td><td data-en="Owner" data-zh="货主（入库方）">Owner</td><td data-en="Event-driven · cost of trust" data-zh="事件性 · 信任成本">Event-driven · cost of trust</td><td class="num">7%</td></tr>
+          <tr><td><b data-en="Registry &amp; supervision" data-zh="登记与监管">Registry &amp; supervision</b></td><td class="mono">¥600/receipt + ¥0.04/kg/mo</td><td data-en="Owner + bank" data-zh="货主 + 银行">Owner + bank</td><td data-en="Recurring · compliance moat" data-zh="经常性 · 合规护城河">Recurring · compliance moat</td><td class="num">6%</td></tr>
+          <tr><td><b data-en="Financing origination" data-zh="金融撮合">Financing origination</b></td><td class="mono">2.5%/yr of loan</td><td data-en="Borrower" data-zh="借款人">Borrower</td><td data-en="Recurring · cycle-sensitive" data-zh="经常性 · 周期敏感">Recurring · cycle-sensitive</td><td class="num">12%</td></tr>
+          <tr><td><b data-en="Transfer &amp; delivery" data-zh="交割与流转">Transfer &amp; delivery</b></td><td class="mono">0.8% of value</td><td data-en="Buyer + seller" data-zh="买卖双方">Buyer + seller</td><td data-en="Event-driven · network effect" data-zh="事件性 · 网络效应">Event-driven · network effect</td><td class="num">10%</td></tr>
+          <tr><td><b data-en="Disposal" data-zh="处置服务">Disposal</b></td><td class="mono">1.5–3% of proceeds</td><td data-en="Bank / fund" data-zh="银行 / 产业基金">Bank / fund</td><td data-en="Event-driven · <b class='up'>counter-cyclical</b>" data-zh="事件性 · <b class='up'>逆周期对冲</b>">Event-driven · <b class="up">counter-cyclical</b></td><td class="num">4%</td></tr>
+          <tr><td><b data-en="Data &amp; index subscription" data-zh="数据与指数订阅">Data &amp; index subscription</b></td><td class="mono">¥60,000/yr/inst + API</td><td data-en="Bank / trader / research" data-zh="银行 / 贸易行 / 研究机构">Bank / trader / research</td><td data-en="Recurring · high margin" data-zh="经常性 · 高毛利">Recurring · high margin</td><td class="num">11%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:20px">
+      <b data-en="The pricing logic." data-zh="定价逻辑：">The pricing logic.</b>
+      <span data-en=" Storage is priced against “rent for shelf space” and has no premium in it. The real premium sits in the last four lines: they charge because lending became possible, because coffee stopped having to travel to change hands, because defaults became sellable, because pricing gained an index. All four presuppose the credit infrastructure — and its cost (QC, registry, monitoring, mark-to-market) is already recovered by the first three lines." data-zh=" 仓储费定价对标“放豆子的租金”，几乎没有溢价空间；真正的溢价来自后四条——它们收费的依据是“银行敢放款了”、“成交不用搬豆子了”、“违约能卖掉了”、“定价有指数可看了”。这四条收入的前提全是信用基础设施，而基础设施的成本（质检、登记、监控、盯市）已经在前三条里收回来了。"> Storage is priced against "rent for shelf space" and has no premium in it. The real premium sits in the last four lines: they charge because lending became possible, because coffee stopped having to travel to change hands, because defaults became sellable, because pricing gained an index. All four presuppose the credit infrastructure — and its cost (QC, registry, monitoring, mark-to-market) is already recovered by the first three lines.</span>
+    </div>
+    <div class="callout">
+      <b data-en="Data subscription is the most underrated line." data-zh="数据订阅是最容易被低估的一条：">Data subscription is the most underrated line.</b>
+      <span data-en=" Once the price index, the grading standard and the batch data become the industry's mark-to-market benchmark, every institution that needs to price a coffee receipt — banks, insurers, funds, traders — is a subscriber, at near-zero marginal cost. Whoever owns the standard and the data owns the entry to supply-chain finance. That is the final moat of this business." data-zh=" 价格指数 + 质检标准 + 批次数据一旦成为行业盯市基准，每个需要给咖啡仓单定价的机构（银行、保险、基金、贸易行）都是订阅客户，边际成本趋近于零。谁掌握标准和数据，谁就掌握产业链金融的入口——这也是整盘生意最终的保护墙。"> Once the price index, the grading standard and the batch data become the industry's mark-to-market benchmark, every institution that needs to price a coffee receipt — banks, insurers, funds, traders — is a subscriber, at near-zero marginal cost. Whoever owns the standard and the data owns the entry to supply-chain finance. That is the final moat of this business.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="04 — Unit economics" data-zh="04 — 单位经济">04 — Unit economics</div>
+      <h2 data-en="Annual contribution of three client types" data-zh="三类典型客户的年贡献">Annual contribution of three client types</h2>
+      <p class="lead" data-en="One infrastructure, three contribution profiles. Traders contribute turnover, roasters contribute leasing and financing, co-operatives contribute seasonal intake and data." data-zh="同一套基础设施，三类客户贡献结构完全不同。贸易商贡献流转，烘焙厂贡献租赁与融资，合作社贡献季节性收储与数据。">One infrastructure, three contribution profiles. Traders contribute turnover, roasters contribute leasing and financing, co-operatives contribute seasonal intake and data.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Client type" data-zh="客户类型">Client type</th>
+            <th data-en="Profile" data-zh="规模与用法">Profile</th>
+            <th class="num" data-en="Storage" data-zh="仓储">Storage</th>
+            <th class="num" data-en="QC/reg/sup" data-zh="质检/登记/监管">QC/reg/sup</th>
+            <th class="num" data-en="Origination" data-zh="撮合">Origination</th>
+            <th class="num" data-en="Transfer/other" data-zh="流转/其他">Transfer/other</th>
+            <th class="num" data-en="Year total" data-zh="年合计">Year total</th>
+            <th class="num" data-en="% of value" data-zh="占货值">% of value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><b data-en="A · Trader" data-zh="A 贸易商">A · Trader</b></td><td data-en="200t active vault, always in, pledged for fast turns" data-zh="200 吨活期仓，常年在仓，质押融资快周转">200t active vault, always in, pledged for fast turns</td><td class="num">¥480k</td><td class="num">¥113k</td><td class="num">¥300k</td><td class="num">¥240k</td><td class="num up"><b>¥1,133k</b></td><td class="num">10.5%</td></tr>
+          <tr><td><b data-en="B · Roaster" data-zh="B 烘焙厂">B · Roaster</b></td><td data-en="80t term vault + bean leasing + order finance" data-zh="80 吨定期仓 + 生豆租赁 + 订单融资">80t term vault + bean leasing + order finance</td><td class="num">¥134k</td><td class="num">¥10k</td><td class="num">¥539k</td><td class="num">¥0</td><td class="num up"><b>¥683k</b></td><td class="num">15.8%</td></tr>
+          <tr><td><b data-en="C · Co-op" data-zh="C 咖农合作社">C · Co-op</b></td><td data-en="120t intake (8 mo) + agency sales + payroll" data-zh="120 吨收储（8 个月）+ 代销 + 工资代发">120t intake (8 mo) + agency sales + payroll</td><td class="num">¥134k</td><td class="num">¥20k</td><td class="num">¥0</td><td class="num">¥224k</td><td class="num up"><b>¥378k</b></td><td class="num">5.8%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout" style="margin-top:20px">
+      <b data-en="How to read it." data-zh="解读：">How to read it.</b>
+      <span data-en=" The roaster carries the highest share of goods value (15.8%) because bean leasing converts inventory service into a fee that floats with production — the productised inversion of “lending umbrellas in sunshine and taking them back in rain”: the harder the client's time, the more we turn dead stock into live assets, and the deeper the stickiness. The co-op contributes least per client but carries the highest strategic value: intake data, origin standards and payroll are the wellspring of the price index and of the buyer-of-last-resort mechanism." data-zh=" 烘焙厂占货值比最高（15.8%），因为“生豆租赁”把库存服务变成了随产量浮动的费用项——这是把“晴天送伞雨天收伞”反过来做的产品化表达：客户越难的时候，越是把死库存变活资产，粘性越深。合作社单客贡献低但战略价值最高：收储数据 + 产地标准 + 工资代发，是价格指数与“最后借款人”机制的源头活水。"> The roaster carries the highest share of goods value (15.8%) because bean leasing converts inventory service into a fee that floats with production — the productised inversion of "lending umbrellas in sunshine and taking them back in rain": the harder the client's time, the more we turn dead stock into live assets, and the deeper the stickiness. The co-op contributes least per client but carries the highest strategic value: intake data, origin standards and payroll are the wellspring of the price index and of the buyer-of-last-resort mechanism.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="05 — Three-year model" data-zh="05 — 三年财务模型">05 — Three-year model</div>
+      <h2 data-en="An illustrative model, not a forecast" data-zh="示意模型，不是预测">An illustrative model, not a forecast</h2>
+      <p class="lead" data-en="Assumption-driven, for calibration of direction only. Every parameter must be re-based against actual rents, power prices and labour costs." data-zh="假设驱动的量级模型，用于校准方向感，不是预测。所有参数需以实际仓租、电价、人工成本校准。">Assumption-driven, for calibration of direction only. Every parameter must be re-based against actual rents, power prices and labour costs.</p>
+    </div>
+    <div class="tw">
+      <table>
+        <thead>
+          <tr>
+            <th data-en="Key assumptions" data-zh="关键假设">Key assumptions</th>
+            <th class="num">Y1</th>
+            <th class="num">Y2</th>
+            <th class="num">Y3</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-en="Climate-controlled capacity (t)" data-zh="恒温仓容（吨）">Climate-controlled capacity (t)</td><td class="num">600</td><td class="num">2,000</td><td class="num">5,000</td></tr>
+          <tr><td data-en="Average utilisation" data-zh="平均利用率">Average utilisation</td><td class="num">65%</td><td class="num">70%</td><td class="num">75%</td></tr>
+          <tr><td data-en="Inventory value (¥10k)" data-zh="在库货值（万元）">Inventory value (¥10k)</td><td class="num">1,187</td><td class="num">4,794</td><td class="num">14,290</td></tr>
+          <tr><td data-en="Pledged loan balance (¥10k)" data-zh="质押融资余额（万元）">Pledged loan balance (¥10k)</td><td class="num">620</td><td class="num">2,490</td><td class="num">7,420</td></tr>
+          <tr><td data-en="Platform transfer volume (¥10k)" data-zh="平台流转成交额（万元）">Platform transfer volume (¥10k)</td><td class="num">2,500</td><td class="num">8,000</td><td class="num">20,000</td></tr>
+          <tr><td data-en="QC lots / subscribing institutions" data-zh="质检批次 / 数据订阅机构">QC lots / subscribing institutions</td><td class="num">50 / 3</td><td class="num">150 / 12</td><td class="num">350 / 30</td></tr>
+          <tr><td><b data-en="Total revenue (¥10k)" data-zh="总收入（万元）">Total revenue (¥10k)</b></td><td class="num"><b>166</b></td><td class="num"><b>603</b></td><td class="num up"><b>1,599</b></td></tr>
+          <tr><td data-en="Total cost (¥10k)" data-zh="总成本（万元）">Total cost (¥10k)</td><td class="num">154</td><td class="num">457</td><td class="num">1,069</td></tr>
+          <tr><td><b data-en="EBITDA (¥10k / %)" data-zh="EBITDA（万元 / 率）">EBITDA (¥10k / %)</b></td><td class="num">12 / 7%</td><td class="num">146 / 24%</td><td class="num up"><b>530 / 33%</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="duo">
+      <div class="card">
+        <h4 data-en="Revenue mix, three-year evolution (¥10k)" data-zh="收入结构：三年演进（万元）">Revenue mix, three-year evolution (¥10k)</h4>
+        <div id="chart-stack" class="chart"></div>
+      </div>
+      <div class="card">
+        <h4 data-en="Y3 revenue composition" data-zh="Y3 收入构成">Y3 revenue composition</h4>
+        <div id="chart-donut" class="chart"></div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:20px">
+      <b data-en="The three inflection points that matter:" data-zh="模型里最重要的三个拐点：">The three inflection points that matter:</b>
+      <span data-en=" (1) Y1→Y2 revenue ×3.6 is driven by origination and data, the two high-margin lines — not by capacity doubling. (2) Data subscription grows from 11% toward a third of the high-margin mix; the leading indicator is how many institutions adopt the index. (3) Disposal sits at 4% in a normal year — yet its existence is what lets the bank lend at 52% instead of 35%. It does not earn its own money; it earns the risk premium of the whole chain." data-zh=" ① Y1→Y2 收入 ×3.6，主要靠撮合与数据两条高毛利线起量，而非仓容翻倍；② 数据订阅从 Y1 的 11% 涨到 Y3 高毛利贡献的 33%，指数被多少家机构采用是先行指标；③ 处置收入在常态年份只占 4%，但它的存在让银行敢给 52% 而不是 35% 的质押率——它赚的不是自己的钱，是整条链的风险溢价。"> (1) Y1→Y2 revenue ×3.6 is driven by origination and data, the two high-margin lines — not by capacity doubling. (2) Data subscription grows from 11% toward a third of the high-margin mix; the leading indicator is how many institutions adopt the index. (3) Disposal sits at 4% in a normal year — yet its existence is what lets the bank lend at 52% instead of 35%. It does not earn its own money; it earns the risk premium of the whole chain.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="06 — Anti-fallacy" data-zh="06 — 反合成谬误">06 — Anti-fallacy</div>
+      <h2 data-en="Build the second door before everyone rushes the narrow one" data-zh="在所有人挤向窄门之前，先修分流门">Build the second door before everyone rushes the narrow one</h2>
+      <p class="lead" data-en="When coffee falls, every pledgor sells at once to repay → price falls further → liquidity dies. The answer is not predicting the crisis; it is pre-building the relief doors into the contract." data-zh="咖啡价格下跌时，所有质押货主同时抛售还贷 → 价格进一步下跌 → 流动性枯竭。对策不是预测危机，而是在合同里预置分流机制。">When coffee falls, every pledgor sells at once to repay → price falls further → liquidity dies. The answer is not predicting the crisis; it is pre-building the分流 into the contract.</p>
+    </div>
+    <div class="g2">
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th data-en="Trigger" data-zh="触发条件">Trigger</th><th data-en="Automatic action" data-zh="自动动作">Automatic action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono">C-price −8%</td><td data-en="System alert; hedging recommended" data-zh="系统预警，建议客户套保锁定">System alert; hedging recommended</td></tr>
+            <tr><td class="mono">−12% / coverage &gt; 55%</td><td data-en="Partial top-up or partial repayment (negotiable)" data-zh="部分补仓或部分还款（可谈）">Partial top-up or partial repayment (negotiable)</td></tr>
+            <tr><td class="mono">−15% / coverage &gt; 60%</td><td data-en="Margin call T+1, no verbal waivers" data-zh="追保 T+1，不接受口头豁免">Margin call T+1, no verbal waivers</td></tr>
+            <tr><td class="mono">−25% / coverage &gt; 72%</td><td data-en="Disposal ladder starts, no further negotiation" data-zh="处置梯队启动，不再议价">Disposal ladder starts, no further negotiation</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th data-en="Relief mechanism" data-zh="分流机制">Relief mechanism</th><th data-en="Design" data-zh="设计">Design</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b data-en="Hedge onboarding" data-zh="套保对接">Hedge onboarding</b></td><td data-en="Pledged portfolios matched to futures / options / price insurance; a hedge policy earns a higher LTV" data-zh="质押组合按柜台比例对接期货/期权/价格保险，套保单作为降低质押率的交换条件">Pledged portfolios matched to futures / options / price insurance; a hedge policy earns a higher LTV</td></tr>
+            <tr><td><b data-en="Concentration caps" data-zh="集中度限额">Concentration caps</b></td><td data-en="Single client ≤25% of loans, single origin ≤35%, single variety ≤40%" data-zh="单一客户 ≤25% 在贷、单一产区 ≤35%、单一品种 ≤40%">Single client ≤25% of loans, single origin ≤35%, single variety ≤40%</td></tr>
+            <tr><td><b data-en="Three-tier disposal" data-zh="三级处置梯队">Three-tier disposal</b></td><td data-en="Core buy-back (92%) → platform auction (7 days) → fund stockpiling (index −5%)" data-zh="核心企业回购（92%）→ 平台拍卖（7 日）→ 产业基金收储（指数 −5%）">Core buy-back (92%) → platform auction (7 days) → fund stockpiling (index −5%)</td></tr>
+            <tr><td><b data-en="Counter-cyclical credit" data-zh="逆周期信贷">Counter-cyclical credit</b></td><td data-en="Pre-signed rollover and extension frameworks with the bank: refinance, not recall — a client that survives keeps the vault full" data-zh="与银行预签续贷/展期框架，衰退期“置换高息债”而非“抽贷”——客户活下来，仓位才满">Pre-signed rollover and extension frameworks with the bank: refinance, not recall — a client that survives keeps the vault full</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:20px">
+      <b data-en="A stress test we must run:" data-zh="压力测试（必须做）：">A stress test we must run:</b>
+      <span data-en=" assume C-price falls 30% in 90 days. Does the loan-book coverage stay above 1.3? Can the three disposal channels digest every defaulted receipt within 60 days? The answers go into the annual due-diligence report we hand the bank — that report is itself the pricing basis of the 2.5% origination fee." data-zh=" 假设 C 价 90 天内下跌 30%，在贷余额覆盖率是否仍 &gt; 1.3？三级处置通道合计吞吐量能否在 60 天内消化全部违约仓单？答案写进给银行的年度尽调报告——这份报告本身就是撮合费 2.5% 的定价依据。"> assume C-price falls 30% in 90 days. Does the loan-book coverage stay above 1.3? Can the three disposal channels digest every defaulted receipt within 60 days? The answers go into the annual due-diligence report we hand the bank — that report is itself the pricing basis of the 2.5% origination fee.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="07 — Agreements &amp; money flow" data-zh="07 — 协议与资金流结构">07 — Agreements &amp; money flow</div>
+      <h2 data-en="Clear enough that the bank shares the spread" data-zh="法律关系清晰到银行愿意把利差让出来">Clear enough that the bank shares the spread</h2>
+      <p class="lead" data-en="Legal duties must be explicit down to who owes what to whom. Only then will a bank give up part of its spread to play in this structure." data-zh="法律关系清晰到“谁对谁负什么责任”，银行才敢把 2.5% 撮合费之外的利差让出来一起玩。">Legal duties must be explicit down to who owes what to whom. Only then will a bank give up part of its spread to play in this structure.</p>
+    </div>
+    <div class="g3">
+      <div class="card">
+        <span class="idx" style="color:var(--accent)" data-en="Platform × Bank" data-zh="平台 × 银行">Platform × Bank</span>
+        <h4 data-en="Storage supervision agreement" data-zh="仓储监管协议">Storage supervision agreement</h4>
+        <p data-en="Daily mark-to-market API · goods released only on the bank's instruction · pledge registration precedes disbursement · annual three-way stocktake. The bank gets collateral it can see, control and sell." data-zh="日频盯市数据接口 · 放货指令仅凭银行指令 · 质押登记前置（先登记后放款）· 年度三方盘库报告。银行获得“看得见、管得住、卖得掉”的抵押品。">Daily mark-to-market API · goods released only on the bank's instruction · pledge registration precedes disbursement · annual three-way stocktake. The bank gets collateral it can see, control and sell.</p>
+      </div>
+      <div class="card">
+        <span class="idx" style="color:var(--up)" data-en="Platform × Core enterprise" data-zh="平台 × 核心企业">Platform × Core enterprise</span>
+        <h4 data-en="Buy-back and disposal agreement" data-zh="回购与处置协议">Buy-back and disposal agreement</h4>
+        <p data-en="Buy-back at 92% of market · disposal priority · counter-cyclical stockpiling triggers (index −X%) · fund participation. The core enterprise trades an obligation for an option: beans bought at 92% in a crash are next year's cheap input." data-zh="回购价承诺（市价 92%）· 处置优先权 · 逆周期收储触发条款（指数 −X% 时启动）· 收储基金份额。核心企业以义务换期权：价格崩时按 92% 收来的豆子就是明年的便宜原料。">Buy-back at 92% of market · disposal priority · counter-cyclical stockpiling triggers (index −X%) · fund participation. The core enterprise trades an obligation for an option: beans bought at 92% in a crash are next year's cheap input.</p>
+      </div>
+      <div class="card">
+        <span class="idx" style="color:var(--warn)" data-en="Money flow" data-zh="资金流">Money flow</span>
+        <h4 data-en="Closed repayment" data-zh="封闭回款">Closed repayment</h4>
+        <p data-en="Sales proceeds enter the bank's escrow → repay the loan first → residual released → platform splits per agreement (storage / supervision / origination). The platform never handles the goods money — structurally eliminating any funding-pool suspicion." data-zh="销售回款进入银行监管账户 → 优先还贷 → 余额释放 → 平台按协议分账（仓储/监管/撮合）。平台全程不经手货款，从结构上杜绝资金池嫌疑。">Sales proceeds enter the bank's escrow → repay the loan first → residual released → platform splits per agreement (storage / supervision / origination). The platform never handles the goods money — structurally eliminating any funding-pool suspicion.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="08 — Roadmap" data-zh="08 — 落地路线">08 — Roadmap</div>
+      <h2 data-en="Twelve months, four milestones" data-zh="12 个月，四个里程碑">Twelve months, four milestones</h2>
+    </div>
+    <div class="layers">
+      <div class="layer">
+        <div class="tag">M1–M3</div>
+        <div class="body">
+          <h4 data-en="Foundation: one bank, one vault, three lots" data-zh="地基：一家银行 + 一座仓 + 三批豆">Foundation: one bank, one vault, three lots</h4>
+          <p data-en="Sign the supervision agreement and data API with one bank; complete the 600t climate-controlled vault; run three lots end-to-end (QC → passport → receipt → registry)." data-zh="与 1 家银行签监管协议与数据接口；建成 600 吨恒温仓；跑通 3 个批次的全流程（质检→护照→仓单→登记）。">Sign the supervision agreement and data API with one bank; complete the 600t climate-controlled vault; run three lots end-to-end (QC → passport → receipt → registry).</p>
+        </div>
+        <div class="val" data-en="Milestone: first receipts bank-approved" data-zh="里程碑：首批仓单获银行内部认可">Milestone: first receipts bank-approved</div>
+      </div>
+      <div class="layer">
+        <div class="tag">M4–M6</div>
+        <div class="body">
+          <h4 data-en="First loan: run the loop once" data-zh="首贷：把闭环跑通一次">First loan: run the loop once</h4>
+          <p data-en="First receipt-pledged disbursement, then the full cycle — lend, mark, repay, release. Price index v1 goes live for internal mark-to-market." data-zh="首笔仓单质押放款落地并完整走完“放款—盯市—还贷—解押”全周期；价格指数 v1 上线（内部盯市用）。">First receipt-pledged disbursement, then the full cycle — lend, mark, repay, release. Price index v1 goes live for internal mark-to-market.</p>
+        </div>
+        <div class="val" data-en="Milestone: the bank funds a second loan" data-zh="里程碑：银行复购第二笔">Milestone: the bank funds a second loan</div>
+      </div>
+      <div class="layer">
+        <div class="tag">M7–M9</div>
+        <div class="body">
+          <h4 data-en="Transfer: receipts start moving instead of beans" data-zh="流转：让仓单开始代替豆子搬家">Transfer: receipts start moving instead of beans</h4>
+          <p data-en="Receipt transfer and delivery go live; the core-enterprise buy-back and the fund stockpiling framework are signed; bean leasing launches." data-zh="仓单转让与交割功能上线；签下核心企业回购协议与产业基金收储框架；生豆租赁产品开卖。">Receipt transfer and delivery go live; the core-enterprise buy-back and the fund stockpiling framework are signed; bean leasing launches.</p>
+        </div>
+        <div class="val" data-en="Milestone: transfer volume > ¥20m" data-zh="里程碑：平台流转成交额破 ¥2,000 万">Milestone: transfer volume &gt; ¥20m</div>
+      </div>
+      <div class="layer">
+        <div class="tag">M10–M12</div>
+        <div class="body">
+          <h4 data-en="Replication: from facility to standard" data-zh="复制：从设施到标准">Replication: from facility to standard</h4>
+          <p data-en="Data subscription sold externally (target: 3 institutions); second site scouted; standard + index + supervision agreement packaged as a replicable franchise template." data-zh="数据订阅对外销售（目标 3 家机构）；启动第二仓址；把“标准+指数+监管协议”打包成可复制的特许模板。">Data subscription sold externally (target: 3 institutions); second site scouted; standard + index + supervision agreement packaged as a replicable franchise template.</p>
+        </div>
+        <div class="val" data-en="Milestone: data revenue > 10%" data-zh="里程碑：数据收入占比 &gt; 10%">Milestone: data revenue &gt; 10%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow" data-en="09 — Red lines" data-zh="09 — 四条红线">09 — Red lines</div>
+      <h2 data-en="Four lines we do not cross" data-zh="四条红线（每一条都有尸体背书）">Four lines we do not cross</h2>
+    </div>
+    <div class="g4">
+      <div class="card">
+        <h4 class="down" data-en="1 · No empty receipts" data-zh="① 不空开仓单">1 · No empty receipts</h4>
+        <p data-en="No intake, no receipt. A hollow receipt is a bounce cheque from the exchange house — every yuan lost at Shanghai steel and Qingdao port traces back to this." data-zh="没有真实入库就没有仓单。空头仓单等于交子铺开空头支票——上海钢贸、青岛港两案的全部损失都源于此。">No intake, no receipt. A hollow receipt is a bounce cheque from the exchange house — every yuan lost at Shanghai steel and Qingdao port traces back to this.</p>
+      </div>
+      <div class="card">
+        <h4 class="down" data-en="2 · No double pledging" data-zh="② 不重复质押">2 · No double pledging</h4>
+        <p data-en="One receipt pledged twice is a run in slow motion. Unique numbering + dual registration + mutually exclusive states — the system refuses, not a clerk." data-zh="一票多押引发挤兑式踩踏。唯一编号 + 双登记（中仓登+中登网）+ 状态互斥锁，系统拒绝而非人工拦。">One receipt pledged twice is a run in slow motion. Unique numbering + dual registration + mutually exclusive states — the system refuses, not a clerk.</p>
+      </div>
+      <div class="card">
+        <h4 class="down" data-en="3 · No funding pool" data-zh="③ 不做资金池">3 · No funding pool</h4>
+        <p data-en="The warehouse is a venue, not a bank: no deposits, no guaranteed returns, no touching margin. All money moves through bank accounts; the platform only instructs." data-zh="仓储方是场景方不是银行：不吸储、不保本付息、不挪用保证金。资金全走银行账户，平台只发指令。">The warehouse is a venue, not a bank: no deposits, no guaranteed returns, no touching margin. All money moves through bank accounts; the platform only instructs.</p>
+      </div>
+      <div class="card">
+        <h4 class="down" data-en="4 · No naked price risk" data-zh="④ 不裸奔于价格风险">4 · No naked price risk</h4>
+        <p data-en="Coffee runs 30–40% annualised volatility. LTV, margin, hedging and a disposal plan must all be live before any disbursement — missing one means no loan." data-zh="咖啡年化波动 30–40%。质押率、保证金、套保、处置预案四件套必须与放款同步生效，缺一不放款。">Coffee runs 30–40% annualised volatility. LTV, margin, hedging and a disposal plan must all be live before any disbursement — missing one means no loan.</p>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:20px">
+      <b data-en="One sentence:" data-zh="总结成一句：">One sentence:</b>
+      <span data-en=" the warehouse's fee is not “rent for shelf space” — it is the service charge for making coffee, for the first time, a priceable, pledgeable, transferable credit asset. Money is an IOU the whole of society agrees to honour; our job is to make the coffee receipt the IOU this industry honours — while holding the line on real title, price risk and compliance." data-zh=" 这套模式里，仓储方赚的不是“放豆子的租金”，而是“让咖啡豆第一次成为可定价、可质押、可流转的信用资产”的服务费。钱是全社会认账的欠条——我们要做的，就是让咖啡仓单成为产业内认账的那张欠条，同时守住真实货权、价格风险与合规红线。"> the warehouse's fee is not "rent for shelf space" — it is the service charge for making coffee, for the first time, a priceable, pledgeable, transferable credit asset. Money is an IOU the whole of society agrees to honour; our job is to make the coffee receipt the IOU this industry honours — while holding the line on real title, price risk and compliance.</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="index.html"><span class="mark">NB</span><span>Napell<span class="b2">Bank</span></span></a>
+        <p data-en="Coffee collateral infrastructure: custody, valuation, receipt lending and disposal, built for the aeroponic supply chain." data-zh="咖啡抵押品基础设施：存管、估值、仓单融资与处置，为雾化水培供应链而建。">Coffee collateral infrastructure: custody, valuation, receipt lending and disposal, built for the aeroponic supply chain.</p>
+      </div>
+      <div class="foot-col">
+        <h5 data-en="Platform" data-zh="平台">Platform</h5>
+        <a href="valuation.html" data-en="Valuation engine" data-zh="估值引擎">Valuation engine</a>
+        <a href="products.html" data-en="Products" data-zh="产品">Products</a>
+        <a href="compliance.html" data-en="Compliance" data-zh="合规">Compliance</a>
+        <a href="assetization.html" data-en="Assetization" data-zh="资产化">Assetization</a>
+        <a href="model.html" data-en="Business model" data-zh="商业模式">Business model</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-en="Ecosystem" data-zh="生态">Ecosystem</h5>
+        <a href="https://napell.life" target="_blank" rel="noopener">Napell Life</a>
+        <a href="https://www.jebiwork.com" target="_blank" rel="noopener">JEBI Works</a>
+        <a href="https://coffeeos.space" target="_blank" rel="noopener">JEBI</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-en="Contact" data-zh="联系">Contact</h5>
+        <a href="mailto:erik.wong@napell.bio">erik.wong@napell.bio</a>
+        <a href="https://wa.me/85293188252" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://github.com/erikcywong/napellbank.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 NAPELL BANK</span>
+      <span data-en="Concept demonstration. All unit prices, capacities and financial figures are illustrative model assumptions; not an offer of financial services, credit or investment advice." data-zh="概念演示站点。全部单价、容量与财务数字均为示意性模型假设；不构成金融服务、信贷或投资建议的要约。">Concept demonstration. All unit prices, capacities and financial figures are illustrative model assumptions; not an offer of financial services, credit or investment advice.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/nav.js"></script>
+<script>
+(function () {
+  var zh = function () { return NAPELLBANK_LANG() === 'zh'; };
+  var cStack = null, cDonut = null;
+
+  var LINES = {
+    en: ['Storage', 'QC & certification', 'Registry & supervision', 'Financing origination', 'Transfer & delivery', 'Disposal', 'Data & index'],
+    zh: ['仓储费', '质检认证', '登记与监管', '金融撮合', '交割流转', '处置服务', '数据订阅']
+  };
+  var COLORS = ['#1d9bf0', '#38bdf8', '#00ba7c', '#ffd400', '#8866e0', '#f4a261', '#f4212e'];
+  var DATA = [
+    [84, 302, 810],   // storage
+    [15, 45, 105],    // qc
+    [8.4, 33, 98],    // registry
+    [15.5, 62, 186],  // origination
+    [20, 64, 160],    // transfer
+    [5, 25, 60],      // disposal
+    [18, 72, 180]     // data
+  ];
+  var YEARS = {
+    en: ['Y1 (600t)', 'Y2 (2,000t)', 'Y3 (5,000t)'],
+    zh: ['Y1（600吨）', 'Y2（2,000吨）', 'Y3（5,000吨）']
+  };
+  var AX = {
+    axisLine: { lineStyle: { color: '#2f3336' } },
+    axisTick: { show: false },
+    axisLabel: { color: '#71767b', fontSize: 11, fontFamily: 'ui-monospace,monospace' },
+    splitLine: { lineStyle: { color: 'rgba(47,51,54,.7)' } }
+  };
+
+  function fmtW(v) { return zh() ? '¥' + v + '万' : '¥' + (v / 100).toFixed(2) + 'm'; }
+
+  function drawStack() {
+    cStack = cStack || echarts.init(document.getElementById('chart-stack'), null, { renderer: 'canvas' });
+    var L = LINES[zh() ? 'zh' : 'en'];
+    cStack.setOption({
+      backgroundColor: 'transparent',
+      legend: { bottom: 0, textStyle: { color: '#9a9fa3', fontSize: 11 }, itemWidth: 12, itemHeight: 8, icon: 'roundRect' },
+      grid: { left: 48, right: 12, top: 16, bottom: 58 },
+      tooltip: {
+        trigger: 'axis',
+        backgroundColor: '#16181c', borderColor: '#2f3336',
+        textStyle: { color: '#e7e9ea', fontSize: 12 },
+        valueFormatter: fmtW
+      },
+      xAxis: Object.assign({ type: 'category', data: YEARS[zh() ? 'zh' : 'en'] }, AX),
+      yAxis: Object.assign({ type: 'value', name: zh() ? '万元' : '¥10k', nameTextStyle: { color: '#536471', fontSize: 10 } }, AX),
+      series: L.map(function (n, i) {
+        return { name: n, type: 'bar', stack: 't', barWidth: 52, data: DATA[i], itemStyle: { color: COLORS[i] } };
+      })
+    });
+  }
+
+  function drawDonut() {
+    cDonut = cDonut || echarts.init(document.getElementById('chart-donut'), null, { renderer: 'canvas' });
+    var L = LINES[zh() ? 'zh' : 'en'];
+    cDonut.setOption({
+      backgroundColor: 'transparent',
+      tooltip: {
+        backgroundColor: '#16181c', borderColor: '#2f3336',
+        textStyle: { color: '#e7e9ea', fontSize: 12 },
+        formatter: function (p) { return p.name + ': ' + fmtW(p.value) + ' (' + p.percent + '%)'; }
+      },
+      legend: { bottom: 0, textStyle: { color: '#9a9fa3', fontSize: 10.5 }, itemWidth: 10, itemHeight: 7, icon: 'circle' },
+      series: [{
+        type: 'pie', radius: ['46%', '70%'], center: ['50%', '44%'],
+        label: { show: false }, labelLine: { show: false },
+        data: L.map(function (n, i) { return { name: n, value: DATA[i][2], itemStyle: { color: COLORS[i] } }; })
+      }],
+      graphic: [
+        { type: 'text', left: 'center', top: '40%', style: { text: zh() ? '¥1,599万' : '¥15.99m', fill: '#e7e9ea', fontSize: 18, fontWeight: 600, fontFamily: 'ui-monospace,monospace' } },
+        { type: 'text', left: 'center', top: '48%', style: { text: zh() ? 'Y3 总收入' : 'Y3 total revenue', fill: '#71767b', fontSize: 10.5 } }
+      ]
+    });
+  }
+
+  window.addEventListener('langchange', function () { drawStack(); drawDonut(); });
+  window.addEventListener('resize', function () {
+    if (cStack) cStack.resize();
+    if (cDonut) cDonut.resize();
+  });
+  document.addEventListener('DOMContentLoaded', function () { drawStack(); drawDonut(); });
+})();
+</script>
+</body>
+</html>
